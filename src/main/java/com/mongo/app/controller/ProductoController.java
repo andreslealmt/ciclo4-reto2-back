@@ -44,6 +44,7 @@ public class ProductoController {
 	}
 	
 	@PutMapping("/update")
+	@ResponseStatus(HttpStatus.CREATED)
 	public Producto updateProducto(@RequestBody Producto producto) {
 		Optional<Producto> oProducto = productoService.getProducto(producto.getReference());
 		if(!oProducto.isPresent()) {

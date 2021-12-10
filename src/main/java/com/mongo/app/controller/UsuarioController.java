@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mongo.app.entity.Usuario;
+import com.mongo.app.pojo.UsuarioPojo;
 import com.mongo.app.services.UsuarioService;
 
 /**
@@ -65,6 +66,7 @@ public class UsuarioController {
 	 * @param usuario instancia de la clase Usuario recibido por POST
 	 * */
 	@PutMapping("/update")
+	@ResponseStatus(HttpStatus.CREATED)
 	public Usuario updateUsuario(@RequestBody Usuario usuario) {
 		Optional<Usuario> oUsuario = usuarioService.getUsuario(usuario.getId());
 		if(oUsuario.isEmpty()) {
@@ -114,14 +116,14 @@ public class UsuarioController {
 	 * @param password contraseña del usuario  
 	 * */
 	@GetMapping("/{email}/{password}")
-	public Usuario autenticar(@PathVariable String email, @PathVariable String password) {
+	public Object autenticar(@PathVariable String email, @PathVariable String password) {
 		Optional<Usuario> oUser = usuarioService.emailExist(email);
 		if(oUser.isPresent()) {
 			if(oUser.get().getPassword().equals(password)) {
 				return oUser.get();
 			}
 		}		
-		return new Usuario(0, null, null, null, null, null, null, null, null);
+		return new UsuarioPojo(null, null, null, null, null, null, null, null, null);		
 	}
 
 }
