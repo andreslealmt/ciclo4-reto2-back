@@ -1,5 +1,7 @@
 package com.mongo.app.entity;
 
+import java.util.Date;
+
 //import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -13,12 +15,14 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(int id, String identification, String name, String address, String cellPhone, String email,
-			String password, String zone, String type) {
-		
+	public Usuario(int id, String identification, String name, Date birthtDay, String monthBirthtDay, String address,
+			String cellPhone, String email, String password, String zone, String type) {
+		super();
 		this.id = id;
 		this.identification = identification;
 		this.name = name;
+		this.birthtDay = birthtDay;
+		this.monthBirthtDay = monthBirthtDay;
 		this.address = address;
 		this.cellPhone = cellPhone;
 		this.email = email;
@@ -26,9 +30,6 @@ public class Usuario {
 		this.zone = zone;
 		this.type = type;
 	}
-
-
-
 
 	// @Id	
 	// private String id; 
@@ -42,9 +43,9 @@ public class Usuario {
 
 	private String name;
 
-	//private Date birthtDay;
+	private Date birthtDay;
 
-	//private String monthBirthtDay;
+	private String monthBirthtDay;
 
 	private String address;
 
@@ -62,9 +63,26 @@ public class Usuario {
 	// Getters and Setters
 	
 	
+	
 
 	public int getId() {
 		return id;
+	}
+
+	public Date getBirthtDay() {
+		return birthtDay;
+	}
+
+	public void setBirthtDay(Date birthtDay) {
+		this.birthtDay = birthtDay;
+	}
+
+	public String getMonthBirthtDay() {
+		return monthBirthtDay;
+	}
+
+	public void setMonthBirthtDay(String monthBirthtDay) {
+		this.monthBirthtDay = monthBirthtDay;
 	}
 
 	public String getIdentification() {
